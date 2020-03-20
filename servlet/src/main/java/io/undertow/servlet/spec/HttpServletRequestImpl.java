@@ -613,10 +613,10 @@ public final class HttpServletRequestImpl implements HttpServletRequest {
             characterEncoding = Charset.forName(env);
 
             final ManagedServlet originalServlet = exchange.getAttachment(ServletRequestContext.ATTACHMENT_KEY).getOriginalServletPathMatch().getServletChain().getManagedServlet();
-//            final FormDataParser parser = originalServlet.getFormParserFactory().createParser(exchange);
-//            if (parser != null) {
-//                parser.setCharacterEncoding(env);
-//            }
+            final FormDataParser parser = originalServlet.getFormParserFactory().createParser(exchange);
+            if (parser != null) {
+                parser.setCharacterEncoding(env);
+            }
         } catch (UnsupportedCharsetException e) {
             throw new UnsupportedEncodingException();
         }
