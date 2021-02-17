@@ -670,8 +670,8 @@ public class VertxHttpExchange extends HttpExchangeBase implements HttpExchange,
                         } else {
                             request.response().write(createBuffer(data));
                         }
-                        queueWriteListener(callback, context, last);
                         request.response().drainHandler(null);
+                        queueWriteListener(callback, context, last);
                     } catch (Exception e) {
                         if (data != null && data.refCnt() > 0) {
                             data.release();
